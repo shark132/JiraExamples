@@ -33,7 +33,7 @@ def case_author():
     # author_name = author["fullname"]
     # author_email = author["email"]
 
-    url = 'https://support.mededtech.ru/rest/api/2/search'
+    url = 'https://server_address.ru/rest/api/2/search'
 
     headers = {
         "Accept": "application/json",
@@ -93,7 +93,7 @@ def case_author():
 def case_replies():
     import json
 
-    # url = "https://support.mededtech.ru/rest/servicedeskapi/servicedesk/2"
+    # url = "https://server-address.ru/rest/servicedeskapi/servicedesk/2"
 
     jql = """
             SELECT 
@@ -104,8 +104,8 @@ WHERE
  jql.query='issuekey ="MT-977"'
     """
 
-    url = 'https://support.mededtech.ru/rest/api/2/issue/picker'
-    url = 'https://support.mededtech.ru/rest/api/2/search'
+    url = 'https://server.ru/rest/api/2/issue/picker'
+    url = 'https://server..ru/rest/api/2/search'
 
     headers = {
         "Accept": "application/json",
@@ -160,7 +160,7 @@ def get_author(mc_code):
 
 def get_issue_comments(issue_key):
     import json
-    url = f"https://support.mededtech.ru/rest/api/2/issue/{issue_key}/comment"
+    url = f"https://server/rest/api/2/issue/{issue_key}/comment"
 
     headers = {
         "Accept": "application/json",
@@ -237,7 +237,7 @@ def render_markdown(text):
 @app.route("/connect_cases", methods=["POST"])
 def connect_cases():
     import json
-    url = 'https://support.mededtech.ru/rest/api/2/search'
+    url = 'https://server_addres/rest/api/2/search'
 
     headers = {
         "Accept": "application/json",
