@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jira request</title>
+</head>
+<body>
+<h1> Выберите тип запроса</h1>
+<form method="post" action="/jira_request">
+    <select size="1" name="request_name">
+        <option value="case_author">Кейсы и автор</option>
+        <option value="case_replies">Ответы пользователям</option>
+    </select>
+    <br/>
+   <button type="submit">Отправить запрос</button>
+</form>
+
+
+<form method="post" action="/connect_cases">
+   <button type="submit">Связать кейсы на доработку</button>
+</form>
+
+</body>
+</html>

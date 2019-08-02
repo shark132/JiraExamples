@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Кейсы и авторы</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    function send_mail(row_num){
+    $.ajax({
+           type: "POST",
+           data: {
+                issue_key: $('.issue .issue_key')[row_num].textContent,
+                mc_code: $('.issue .mc_code')[row_num].textContent,
+                description: $('.issue .description')[row_num].textContent,
+                comments: $('.issue .comments')[row_num].textContent,
+                fullname: $('.issue .fullname')[row_num].textContent,
+                email: $('.issue .email')[row_num].textContent
+            },
+           url: "http://127.0.0.1:5000/send_mail",
+           <!--success: function(data){-->
+             <!--alert("Данные отправлены");-->
+           <!--}-->
+        });
+    };
+
+
+    </script>
+
+    <style>
+        .table_blur {
+          background: #f5ffff;
+          border-collapse: collapse;
+          text-align: center;
+        }
+        .table_blur th {
+          border-top: 1px solid #777777;
+          border-bottom: 1px solid #777777;
+          box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
+          background: linear-gradient(#9595b6, #5a567f);
+          color: white;
+          padding: 10px 15px;
+          position: relative;
+        }
+        .table_blur th:after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 25%;
+          height: 25%;
+          width: 100%;
+          background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255,.08));
+        }
+        .table_blur tr:nth-child(odd) {
+          background: #ebf3f9;
+        }
+        .table_blur th:first-child {
+          border-left: 1px solid #777777;
+          border-bottom:  1px solid #777777;
+          box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur th:last-child {
+          border-right: 1px solid #777777;
+          border-bottom:  1px solid #777777;
+          box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur td {
+          border: 1px solid #e3eef7;
+          padding: 10px 15px;
+          position: relative;
+          transition: all 0.5s ease;
+        }
+        .table_blur tbody:hover td {
+          color: transparent;
+          text-shadow: 0 0 3px #a09f9d;
+        }
+        .table_blur tbody:hover tr:hover td {
+          color: #444444;
+          text-shadow: none;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<h1>Кейсы и авторы</h1>
+
+<table class="table_blur">
+    <tr>
+        <th>Номер задачи</th>
+        <th>Код мультикейса</th>
+        <th>Замечание</th>
+        <th>Комментарии</th>
+        <th>ФИО автора</th>
+        <th>Электронная почта</th>
+        <th>Отправка письма</th>
+    </tr>
+    {% for item in issues_info %}
+    <tr class="issue">
+        <td class="issue_key">{{item}}</td>
+        <td class="mc_code">{{issues_info[item]['mc_code']}}</td>
+        <td class="description">{{issues_info[item]['description']}}</td>
+        <td class="comments">{{issues_info[item]['comments']}}</td>
+        <td class="fullname">{{issues_info[item]['mc_author']['fullname']}}</td>
+        <td class="email">{{issues_info[item]['mc_author']['email']}}</td>
+        <td>
+            <button onclick="send_mail({{ loop.index - 1 }})">Отправить письмо</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+
+</html>
